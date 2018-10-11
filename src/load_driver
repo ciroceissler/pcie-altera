@@ -25,7 +25,7 @@ if [ -f "$1" ]; then
 fi
 
 # invoke insmod with the information extracted from the configuration file
-/sbin/insmod -f ./${DRV_MODULE}.ko `awk '$1!~/^#/' $CONFIG_FILE | tr -d " " | tr -d "\t" | tr "\n" " "` ||  exit 1
+/sbin/insmod ./${DRV_MODULE}.ko `awk '$1!~/^#/' $CONFIG_FILE | tr -d " " | tr -d "\t" | tr "\n" " "` ||  exit 1
 
 # get the major number of the device if the probe() is called successfully by the kernel
 DRV_MAJOR=`cat /proc/devices | grep $DRV_NAME | awk '{print $1}' `

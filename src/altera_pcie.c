@@ -2,6 +2,7 @@
 #include <linux/module.h>
 #include <linux/interrupt.h>
 #include <linux/sched.h>
+#include <linux/uaccess.h>
 #include "altera_pcie.h"
 #include "altera_pcie_cmd.h"
 
@@ -487,7 +488,7 @@ static void __exit altera_pci_remove(struct pci_dev *dev)
     class_destroy(bk_ptr->dev_class);
 
     kfree(bk_ptr);
-    dev_err(&dev->dev, ": altera_pcie_remove(), " __DATE__ " " __TIME__ "\n");
+    dev_err(&dev->dev, ": altera_pcie_remove() \n");
 }
 
 static struct pci_device_id pci_ids[] = {
@@ -506,7 +507,7 @@ static int __init altera_pcie_init(void)
 {
     int rc = 0;
 
-    printk(KERN_DEBUG ALTERA_PCIE_DRIVER_NAME ": altera_pcie_init(), " __DATE__ " " __TIME__ "\n");
+    printk(KERN_DEBUG ALTERA_PCIE_DRIVER_NAME ": altera_pcie_init() \n");
 
     pci_ids[0].vendor = vendor_id;
     pci_ids[0].device = device_id;
